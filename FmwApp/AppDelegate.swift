@@ -22,6 +22,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DDLogManager.addLoger(DDTTYLoger.sharedInstance)
         DDLogManager.addLoger(DDFileLoger())
         
+        DDLogVerbose("This is verbose log message.")
+        DDLogDebug("This is debug log message.")
+        DDLogInfo("This is info log message.")
+        DDLogWarn("This is warning log message.")
+        DDLogError("This is error log message.")
+        
         let queue = dispatch_queue_create("com.ddlog.tty", DISPATCH_QUEUE_SERIAL)
         for i in 0...1000 {
             dispatch_async(queue, { DDLogDebug("\(i). This is debug message") })
