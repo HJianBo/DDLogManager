@@ -254,8 +254,6 @@ class DDLogFileManager {
         let hasPrefix = fileName.hasPrefix(applicationName)
         let hasSuffix = fileName.hasSuffix(".log")
         
-        
-        
         return (hasPrefix && hasSuffix)
     }
     

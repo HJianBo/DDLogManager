@@ -39,7 +39,7 @@ import Foundation
 }
 
 
-public func DDLogVerbose(format: String, function: StaticString = __FUNCTION__, file: StaticString = __FILE__, line: Int = __LINE__) {
+public func DDLogVerbose(format: String, function: StaticString = #function, file: StaticString = #file, line: Int = #line) {
     let manager = DDLogManager.sharedInstance
     
     manager.logMessage(format, level: .Verbose,
@@ -48,7 +48,7 @@ public func DDLogVerbose(format: String, function: StaticString = __FUNCTION__, 
                                 line: line)
 }
 
-public func DDLogInfo(format: String, function: StaticString = __FUNCTION__, file: StaticString = __FILE__, line: Int = __LINE__) {
+public func DDLogInfo(format: String, function: StaticString = #function, file: StaticString = #file, line: Int = #line) {
     let manager = DDLogManager.sharedInstance
     
     manager.logMessage(format, level: .Info,
@@ -57,7 +57,7 @@ public func DDLogInfo(format: String, function: StaticString = __FUNCTION__, fil
                                 line: line)
 }
 
-public func DDLogDebug(format: String, function: StaticString = __FUNCTION__, file: StaticString = __FILE__, line: Int = __LINE__) {
+public func DDLogDebug(format: String, function: StaticString = #function, file: StaticString = #file, line: Int = #line) {
     let manager = DDLogManager.sharedInstance
     
     manager.logMessage(format, level: .Debug,
@@ -66,7 +66,7 @@ public func DDLogDebug(format: String, function: StaticString = __FUNCTION__, fi
                                 line: line)
 }
 
-public func DDLogWarn(format: String, function: StaticString = __FUNCTION__, file: StaticString = __FILE__, line: Int = __LINE__) {
+public func DDLogWarn(format: String, function: StaticString = #function, file: StaticString = #file, line: Int = #line) {
     let manager = DDLogManager.sharedInstance
     
     manager.logMessage(format, level: .Warning,
@@ -75,7 +75,7 @@ public func DDLogWarn(format: String, function: StaticString = __FUNCTION__, fil
                                 line: line)
 }
 
-public func DDLogError(format: String, function: StaticString = __FUNCTION__, file: StaticString = __FILE__, line: Int = __LINE__) {
+public func DDLogError(format: String, function: StaticString = #function, file: StaticString = #file, line: Int = #line) {
     let manager = DDLogManager.sharedInstance
     
     manager.logMessage(format, level: .Error,
