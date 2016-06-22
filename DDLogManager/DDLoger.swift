@@ -46,7 +46,7 @@ public class DDTTYLoger: DDLoger {
     }
     
     init() {
-        isAsync = true
+        isAsync = false
     }
     
     public func logMessage(msg: DDLogMessage) {
@@ -73,7 +73,7 @@ public class DDTTYLoger: DDLoger {
         if isAsync {
             dispatch_async(queue!, clouser)
         } else {
-            dispatch_sync(queue!, clouser)
+            clouser()
         }
     }
 }

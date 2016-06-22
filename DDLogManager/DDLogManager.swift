@@ -112,7 +112,7 @@ public class DDLogManager {
     
     init() {
         logers = []
-        logQueue = dispatch_queue_create("com.swiftlog.logmanager", DISPATCH_QUEUE_SERIAL)
+        logQueue = dispatch_queue_create("com.swiftlog.logmanager", DISPATCH_QUEUE_CONCURRENT)
     }
     
     func logMessage(format: String, level: DDLogLevel, function: String, file: String, line: Int) {

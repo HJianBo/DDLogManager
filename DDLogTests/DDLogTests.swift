@@ -27,9 +27,11 @@ class DDLogTests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
         DDLogManager.addLoger(DDTTYLoger.sharedInstance)
+        
         let queue = dispatch_queue_create("com.ddlog.unittest", DISPATCH_QUEUE_CONCURRENT)
         for i in 0...1000 {
-            dispatch_sync(queue, { DDLogDebug("\(i). This is debug message") })
+            //dispatch_sync(queue, { NSLog("\(i). This is debug message") })
+            dispatch_async(queue) { DDLogDebug("\(i). This is debug message") }
         }
     }
 }
