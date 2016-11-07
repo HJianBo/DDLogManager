@@ -9,7 +9,7 @@
 import Foundation
 import Dispatch
 
-@objc public enum DDLogLevel: UInt8 {
+public enum DDLogLevel: UInt8 {
     
     /// 不显示日志
     case off  = 0
