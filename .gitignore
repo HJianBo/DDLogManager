@@ -1,8 +1,4 @@
-
-DDLogManager.xcodeproj/xcuserdata/hjianbo.xcuserdatad/xcschemes/xcschememanagement.plist
-
-*.xcuserstate
-
-*.xcbkptlist
-
-*.xcscheme
+.DS_Store
+/.build
+/Packages
+/*.xcodeproj
