@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Dispatch
 
 @objc public enum DDLogLevel: UInt8 {
     
