@@ -256,7 +256,7 @@ class DDLogFileManager {
     
     func isLogFile(_ name: String) -> Bool {
         // TODO:
-        let fileName = name as NSString
+        let fileName = name
         let hasPrefix = fileName.hasPrefix(applicationName)
         let hasSuffix = fileName.hasSuffix(".log")
         
