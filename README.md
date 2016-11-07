@@ -11,7 +11,7 @@ DDLogManager 是一个简单的、纯Swift实现的**日志管理框架**。提�
 
 - Mac OS 10.10 +
 - iOS 8.0 +
-- Swift 2.1 +
+- Swift 3.0 +
 
 # 使用
 
@@ -37,7 +37,15 @@ DDLogError("This is error log message.")
 
 ```
 
+# TODO
+1. 转为 Swift Package Manager 的方式
+2. 支持 iOS、macOS、Ubuntu
+3. 支持控制台颜色打印
+4. 支持 Log 日志文件管理
+
 # 感谢
 参照大神[@CocoaLumberjack](https://github.com/CocoaLumberjack/CocoaLumberjack)编写.
 
 Thanks! 😃
+
+

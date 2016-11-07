@@ -7,11 +7,35 @@
 //
 
 import Foundation
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l >= r
+  default:
+    return !(lhs < rhs)
+  }
+}
+
 
 
 public protocol DDLoger {
     
-    var queue: dispatch_queue_t? {get set}
+    var queue: DispatchQueue? {get set}
     
     var formatter: DDLogFormatter? {get set}
     
@@ -19,37 +43,27 @@ public protocol DDLoger {
     
     var isAsync: Bool {get set}
     
-    func logMessage(msg: DDLogMessage)
+    func logMessage(_ msg: DDLogMessage)
 }
 
 
-public class DDTTYLoger: DDLoger {
+open class DDTTYLoger: DDLoger {
     
-    public var queue: dispatch_queue_t?
+    open static var sharedInstance = DDTTYLoger()
     
-    public var formatter: DDLogFormatter?
+    open var queue: DispatchQueue?
     
-    public var level: DDLogLevel?
+    open var formatter: DDLogFormatter?
     
-    public var isAsync: Bool
+    open var level: DDLogLevel?
     
-    public class var sharedInstance: DDTTYLoger {
-        struct Static {
-            static var onceToken : dispatch_once_t = 0
-            static var instance : DDTTYLoger? = nil
-        }
-        dispatch_once(&Static.onceToken) {
-            Static.instance = DDTTYLoger()
-        }
-        
-        return Static.instance!
-    }
+    open var isAsync: Bool
     
     init() {
         isAsync = false
     }
     
-    public func logMessage(msg: DDLogMessage) {
+    open func logMessage(_ msg: DDLogMessage) {
         if queue == nil {
             queue = DDLogManager.sharedInstance.logQueue
         }
@@ -71,7 +85,7 @@ public class DDTTYLoger: DDLoger {
         }
         
         if isAsync {
-            dispatch_async(queue!, clouser)
+            queue!.async(execute: clouser)
         } else {
             clouser()
         }
@@ -79,38 +93,28 @@ public class DDTTYLoger: DDLoger {
 }
 
 
-public class DDFileLoger: DDLoger {
+open class DDFileLoger: DDLoger {
     
-    public var queue: dispatch_queue_t?
+    open var queue: DispatchQueue?
     
-    public var formatter: DDLogFormatter?
+    open var formatter: DDLogFormatter?
     
-    public var level: DDLogLevel?
+    open var level: DDLogLevel?
     
-    public var isAsync: Bool
+    open var isAsync: Bool
     
     var logFileManager: DDLogFileManager
     
-    public class var sharedInstance: DDFileLoger {
-        struct Static {
-            static var onceToken : dispatch_once_t = 0
-            static var instance : DDFileLoger? = nil
-        }
-        dispatch_once(&Static.onceToken) {
-            Static.instance = DDFileLoger()
-        }
-        
-        return Static.instance!
-    }
+    open static var sharedInstance = DDFileLoger()
     
     public init() {
-        queue = dispatch_queue_create("com.swiftlog.fileloger", DISPATCH_QUEUE_SERIAL)
+        queue = DispatchQueue(label: "com.swiftlog.fileloger", attributes: [])
         logFileManager = DDLogFileManager()
         isAsync = true
     }
     
     
-    public func logMessage(msg: DDLogMessage) {
+    open func logMessage(_ msg: DDLogMessage) {
         if queue == nil {
             queue = DDLogManager.sharedInstance.logQueue
         }
@@ -133,9 +137,9 @@ public class DDFileLoger: DDLoger {
         
         
         if isAsync {
-            dispatch_async(queue!, clousre)
+            queue!.async(execute: clousre)
         } else {
-            dispatch_sync(queue!, clousre)
+            queue!.sync(execute: clousre)
         }
     }
 }
@@ -146,16 +150,16 @@ class DDLogFileManager {
     
     let maximumFileSize: UInt = 1024 * 1024 // 1MB
     
-    let fileManager = NSFileManager.defaultManager()
+    let fileManager = FileManager.default
     
     var defaultLogDirectory: String {
-        let paths = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)
-        let path  = paths.first!.stringByAppendingString("/Logs")
+        let paths = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)
+        let path  = paths.first! + "/Logs"
         
         // create file path
-        if !fileManager.fileExistsAtPath(path) {
+        if !fileManager.fileExists(atPath: path) {
             do {
-                try fileManager.createDirectoryAtPath(path, withIntermediateDirectories: true, attributes: nil)
+                try fileManager.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
             } catch {
                 DDLogError("\(error)")
             }
@@ -179,7 +183,7 @@ class DDLogFileManager {
     func unsortedLogFileNames() -> Array<String> {
         var logFileNames = Array<String>()
         do {
-            let fileNames = try fileManager.contentsOfDirectoryAtPath(defaultLogDirectory)
+            let fileNames = try fileManager.contentsOfDirectory(atPath: defaultLogDirectory)
             for fileName in fileNames {
                 if isLogFile(fileName) {
                     logFileNames.append(fileName)
@@ -202,7 +206,7 @@ class DDLogFileManager {
     
     func sortedLogFileNames() -> Array<String> {
         var logFileNames = unsortedLogFileNames()
-        logFileNames.sortInPlace { (a, b) -> Bool in
+        logFileNames.sort { (a, b) -> Bool in
             return a > b
         }
         return logFileNames
@@ -210,29 +214,29 @@ class DDLogFileManager {
     
     func sortedLogFilePaths() -> Array<String> {
         var logFilePaths = unsortedLogFilePaths()
-        logFilePaths.sortInPlace { (a, b) -> Bool in
+        logFilePaths.sort { (a, b) -> Bool in
             return a > b
         }
         return logFilePaths
     }
     
-    func writeFile(str: String) {
+    func writeFile(_ str: String) {
         var message = str
         if !message.hasSuffix("\n") {
             message = message + "\n"
         }
         
         do {
-            let fileAttr = try fileManager.attributesOfItemAtPath(lastLogFilePath)
-            let fileSize = fileAttr[NSFileSize] as? UInt
+            let fileAttr = try fileManager.attributesOfItem(atPath: lastLogFilePath)
+            let fileSize = fileAttr[FileAttributeKey.size] as? UInt
             if fileSize >= maximumFileSize {
                 createNewLogFile()
             }
             
-            let data = message.dataUsingEncoding(NSUTF8StringEncoding)!
-            if let fileHandler =  NSFileHandle(forWritingAtPath: lastLogFilePath) {
+            let data = message.data(using: String.Encoding.utf8)!
+            if let fileHandler =  FileHandle(forWritingAtPath: lastLogFilePath) {
                 fileHandler.seekToEndOfFile()
-                fileHandler.writeData(data)
+                fileHandler.write(data)
             } else {
                 DDLogError("SwiftLog open file handler error!!!!")
             }
@@ -243,12 +247,12 @@ class DDLogFileManager {
     
     func createNewLogFile() -> String {
         let path = "\(defaultLogDirectory)/\(applicationName)_\(currentDate).log"
-        fileManager.createFileAtPath(path, contents: nil, attributes: nil)
+        fileManager.createFile(atPath: path, contents: nil, attributes: nil)
         
         return path
     }
     
-    func isLogFile(name: String) -> Bool {
+    func isLogFile(_ name: String) -> Bool {
         // TODO:
         let fileName = name as NSString
         let hasPrefix = fileName.hasPrefix(applicationName)
@@ -264,9 +268,9 @@ class DDLogFileManager {
     }
     
     var currentDate: String {
-        let formatter = NSDateFormatter()
+        let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH-mm"
-        return formatter.stringFromDate(NSDate(timeIntervalSinceNow: 0))
+        return formatter.string(from: Date(timeIntervalSinceNow: 0))
     }
 }
 

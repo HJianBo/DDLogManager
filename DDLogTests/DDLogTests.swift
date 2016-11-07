@@ -28,10 +28,10 @@ class DDLogTests: XCTestCase {
         
         DDLogManager.addLoger(DDTTYLoger.sharedInstance)
         
-        let queue = dispatch_queue_create("com.ddlog.unittest", DISPATCH_QUEUE_CONCURRENT)
+        let queue = DispatchQueue(label: "com.ddlog.unittest", attributes: DispatchQueue.Attributes.concurrent)
         for i in 0...1000 {
             //dispatch_sync(queue, { NSLog("\(i). This is debug message") })
-            dispatch_async(queue) { DDLogDebug("\(i). This is debug message") }
+            queue.async { DDLogDebug("\(i). This is debug message") }
         }
     }
 }

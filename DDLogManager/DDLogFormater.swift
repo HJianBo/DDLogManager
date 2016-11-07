@@ -10,19 +10,19 @@ import Foundation
 
 public protocol DDLogFormatter {
     
-    func formatMessage(msg: DDLogMessage) -> String
+    func formatMessage(_ msg: DDLogMessage) -> String
 }
 
 
 class DDLogDefaultFormatter: DDLogFormatter {
     
-    func formatMessage(msg: DDLogMessage) -> String {
-        let fileName  = msg.file.componentsSeparatedByString("/").last!
-        let date      = NSDate(timeIntervalSince1970: msg.timestamp)
-        let datefmter = NSDateFormatter()
+    func formatMessage(_ msg: DDLogMessage) -> String {
+        let fileName  = msg.file.components(separatedBy: "/").last!
+        let date      = Date(timeIntervalSince1970: msg.timestamp)
+        let datefmter = DateFormatter()
         
         datefmter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         
-        return "\(datefmter.stringFromDate(date)) [\(fileName): \(msg.line)][\(msg.level.stringValue)]: \(msg.message)"
+        return "\(datefmter.string(from: date)) [\(fileName): \(msg.line)][\(msg.level.stringValue)]: \(msg.message)"
     }
 }

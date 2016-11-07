@@ -11,112 +11,102 @@ import Foundation
 @objc public enum DDLogLevel: UInt8 {
     
     /// 不显示日志
-    case Off  = 0
+    case off  = 0
     
     /// 显示 错误 日志
-    case Error
+    case error
     
     /// 显示 错误|警告 日志
-    case Warning
+    case warning
     
     /// 显示 错误|警告|信息 日志
-    case Info
+    case info
     
     /// 显示 错误|警告|信息|调试 日志
-    case Debug
+    case debug
     
     /// 显示 错误|警告|调试|信息|冗余 日志
-    case Verbose
+    case verbose
     
     
     var stringValue: String {
         return map[self]!
     }
     
-    private var map: Dictionary<DDLogLevel, String> {
-        return [.Off: "Off", .Error: "Error", .Warning: "Warn ", .Debug: "Debug", .Info: "Info ", .Verbose: "Verbs"]
+    fileprivate var map: Dictionary<DDLogLevel, String> {
+        return [.off: "Off", .error: "Error", .warning: "Warn ", .debug: "Debug", .info: "Info ", .verbose: "Verbs"]
     }
 }
 
 
-public func DDLogVerbose(format: String, function: StaticString = #function, file: StaticString = #file, line: Int = #line) {
+public func DDLogVerbose(_ format: String, function: StaticString = #function, file: StaticString = #file, line: Int = #line) {
     let manager = DDLogManager.sharedInstance
     
-    manager.logMessage(format, level: .Verbose,
-                            function: function.stringValue,
-                                file: file.stringValue,
+    manager.logMessage(format, level: .verbose,
+                            function: String(describing: function),
+                                file: String(describing: file),
                                 line: line)
 }
 
-public func DDLogInfo(format: String, function: StaticString = #function, file: StaticString = #file, line: Int = #line) {
+public func DDLogInfo(_ format: String, function: StaticString = #function, file: StaticString = #file, line: Int = #line) {
     let manager = DDLogManager.sharedInstance
     
-    manager.logMessage(format, level: .Info,
-                            function: function.stringValue,
-                                file: file.stringValue,
+    manager.logMessage(format, level: .info,
+                            function: String(describing: function),
+                                file: String(describing: file),
                                 line: line)
 }
 
-public func DDLogDebug(format: String, function: StaticString = #function, file: StaticString = #file, line: Int = #line) {
+public func DDLogDebug(_ format: String, function: StaticString = #function, file: StaticString = #file, line: Int = #line) {
     let manager = DDLogManager.sharedInstance
     
-    manager.logMessage(format, level: .Debug,
-                            function: function.stringValue,
-                                file: file.stringValue,
+    manager.logMessage(format, level: .debug,
+                            function: String(describing: function),
+                                file: String(describing: file),
                                 line: line)
 }
 
-public func DDLogWarn(format: String, function: StaticString = #function, file: StaticString = #file, line: Int = #line) {
+public func DDLogWarn(_ format: String, function: StaticString = #function, file: StaticString = #file, line: Int = #line) {
     let manager = DDLogManager.sharedInstance
     
-    manager.logMessage(format, level: .Warning,
-                            function: function.stringValue,
-                                file: file.stringValue,
+    manager.logMessage(format, level: .warning,
+                            function: String(describing: function),
+                                file: String(describing: file),
                                 line: line)
 }
 
-public func DDLogError(format: String, function: StaticString = #function, file: StaticString = #file, line: Int = #line) {
+public func DDLogError(_ format: String, function: StaticString = #function, file: StaticString = #file, line: Int = #line) {
     let manager = DDLogManager.sharedInstance
     
-    manager.logMessage(format, level: .Error,
-                            function: function.stringValue,
-                                file: file.stringValue,
+    manager.logMessage(format, level: .error,
+                            function: String(describing: function),
+                                file: String(describing: file),
                                 line: line)
 }
 
-public class DDLogManager {
+open class DDLogManager {
+
+    static var sharedInstance = DDLogManager()
     
     /// all logers
     var logers: Array<DDLoger>
     
     /// FIFO
-    var logQueue: dispatch_queue_t
+    var logQueue: DispatchQueue
     
-    public var defaultLevel: DDLogLevel = .Debug
+    open var defaultLevel: DDLogLevel = .debug
     
-    public class var sharedInstance: DDLogManager {
-        struct Static {
-            static var onceToken : dispatch_once_t = 0
-            static var instance : DDLogManager? = nil
-        }
-        dispatch_once(&Static.onceToken) {
-            Static.instance = DDLogManager()
-        }
-        
-        return Static.instance!
-    }
-    
-    public class func addLoger(loger: DDLoger) {
+    open class func addLoger(_ loger: DDLoger) {
         DDLogManager.sharedInstance.logers.append(loger)
     }
     
     init() {
         logers = []
-        logQueue = dispatch_queue_create("com.swiftlog.logmanager", DISPATCH_QUEUE_CONCURRENT)
+        logQueue = DispatchQueue(label: "com.swiftlog.logmanager", attributes: DispatchQueue.Attributes.concurrent)
     }
     
-    func logMessage(format: String, level: DDLogLevel, function: String, file: String, line: Int) {
-        let timestamp = NSDate(timeIntervalSinceNow: 0).timeIntervalSince1970
+    func logMessage(_ format: String, level: DDLogLevel, function: String, file: String, line: Int) {
+        let timestamp = Date(timeIntervalSinceNow: 0).timeIntervalSince1970
         let message = DDLogMessage(message: format, level: level, function: function, file: file, line: line, time: timestamp)
         
         for loger in logers {
@@ -134,13 +124,13 @@ public struct DDLogMessage {
     
     public var line: Int
     
-    public var timestamp: NSTimeInterval
+    public var timestamp: TimeInterval
     
     public var level: DDLogLevel
     
     public var message: String
     
-    public init(message msg: String, level lvl: DDLogLevel, function fctn: String, file fle: String, line l: Int, time t: NSTimeInterval) {
+    public init(message msg: String, level lvl: DDLogLevel, function fctn: String, file fle: String, line l: Int, time t: TimeInterval) {
         function  = fctn
         file      = fle
         line      = l
