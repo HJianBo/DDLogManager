@@ -253,6 +253,7 @@
 					};
 					8287CF5B1C5A04280029F868 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0810;
 					};
 				};
 			};
@@ -549,6 +550,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jianbo.FmwApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -565,6 +567,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jianbo.FmwApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
