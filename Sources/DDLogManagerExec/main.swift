@@ -5,7 +5,8 @@ import DDLogManager
 DDLogManager.addLoger(DDTTYLoger.sharedInstance) // TTY  = Xcode console
 DDLogManager.addLoger(DDFileLoger()) // File = Written log to file
 
-// ...
+// set 
+DDTTYLoger.sharedInstance.level = .info
 
 DDLogVerbose("This is verbose log message.")
 DDLogDebug("This is debug log message.")
