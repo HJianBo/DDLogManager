@@ -40,6 +40,7 @@ DDLogError("This is error log message.")
 1. 支持控制台颜色打印
 2. 支持 Log 日志文件管理
 3. 修复多线程打印时的时序问题
+4. 支持 `Carthage`, 以供 iOS 开发使用
 
 # 感谢
 参照大神[@CocoaLumberjack](https://github.com/CocoaLumberjack/CocoaLumberjack)完成编写.
