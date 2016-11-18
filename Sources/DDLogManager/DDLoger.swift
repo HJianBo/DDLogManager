@@ -232,7 +232,7 @@ class DDLogFileManager {
             let fileAttr = try fileManager.attributesOfItem(atPath: lastLogFilePath)
             let fileSize = fileAttr[FileAttributeKey.size] as? UInt
             if fileSize >= maximumFileSize {
-                createNewLogFile()
+                 createNewLogFile()
             }
             
             let data = message.data(using: String.Encoding.utf8)!
@@ -247,7 +247,7 @@ class DDLogFileManager {
         }
     }
     
-    func createNewLogFile() -> String {
+    @discardableResult func createNewLogFile() -> String {
         let path = "\(defaultLogDirectory)/\(applicationName)_\(currentDate).log"
         fileManager.createFile(atPath: path, contents: nil, attributes: nil)
         
