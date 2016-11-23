@@ -85,8 +85,15 @@ public func DDLogError(_ format: String, function: StaticString = #function, fil
                                 line: line)
 }
 
-open class DDLogManager {
+// MAX QUEUE SIZE
+private let MAX_LOG_QUEUE_SIZE = 1000
 
+private let LOG_QUEUE_SPECIFI_KEY = DispatchSpecificKey<String>()
+
+private let LOG_QUEUE_SPECIFI_VALUE = "LOG_QUEUE_SPECIFI_VALUE"
+
+open class DDLogManager {
+    
     static var sharedInstance = DDLogManager()
     
     /// all logers
@@ -94,6 +101,12 @@ open class DDLogManager {
     
     /// FIFO
     var logQueue: DispatchQueue
+    
+    /// control queue size
+    var logSemaphore: DispatchSemaphore
+    
+    /// ???
+    var logGroup: DispatchGroup
     
     open var defaultLevel: DDLogLevel = .debug
     
@@ -103,16 +116,55 @@ open class DDLogManager {
     
     init() {
         logers = []
-        logQueue = DispatchQueue(label: "com.swiftlog.logmanager", attributes: DispatchQueue.Attributes.concurrent)
+        logQueue = DispatchQueue(label: "com.logmanager.manager")
+        logQueue.setSpecific(key: LOG_QUEUE_SPECIFI_KEY, value: LOG_QUEUE_SPECIFI_VALUE)
+        
+        logSemaphore = DispatchSemaphore(value: MAX_LOG_QUEUE_SIZE)
+        
+        logGroup = DispatchGroup()
     }
     
     func logMessage(_ format: String, level: DDLogLevel, function: String, file: String, line: Int) {
         let timestamp = Date(timeIntervalSinceNow: 0).timeIntervalSince1970
-        let message = DDLogMessage(message: format, level: level, function: function, file: file, line: line, time: timestamp)
+        let message = DDLogMessage(message: format,
+                                   level: level,
+                                   function: function,
+                                   file: file,
+                                   line: line,
+                                   time: timestamp)
+        queuelog(message: message)
+    }
+    
+    func queuelog(message: DDLogMessage) {
+        let result = logSemaphore.wait(timeout: DispatchTime.distantFuture)
+        
+        // waiting for queue
+        if result == .success {
+            let clouser = {
+                self.lt_log(message: message)
+            }
+            logQueue.async { clouser() }
+        } else {
+            // false ???
+        }
+    }
+    
+    func lt_log(message: DDLogMessage) {
+        
+        // Execute the given log message on each of our loggers.
+        assert(DispatchQueue.getSpecific(key: LOG_QUEUE_SPECIFI_KEY) == LOG_QUEUE_SPECIFI_VALUE,
+               "This method should only be run on the logging thread/queue")
         
         for loger in logers {
-            loger.logMessage(message)
+            //logGroup.enter()
+            loger.queue.async {
+                loger.logMessage(message)
+            }
+            //logGroup.leave()
+            
         }
+        
+        logSemaphore.signal()
     }
 }
 

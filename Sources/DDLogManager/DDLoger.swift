@@ -37,13 +37,11 @@ fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 public protocol DDLoger {
     
-    var queue: DispatchQueue? {get set}
+    var queue: DispatchQueue {get set}
     
     var formatter: DDLogFormatter? {get set}
     
     var level: DDLogLevel? {get set}
-    
-    var isAsync: Bool {get set}
     
     func logMessage(_ msg: DDLogMessage)
 }
@@ -53,23 +51,17 @@ open class DDTTYLoger: DDLoger {
     
     open static var sharedInstance = DDTTYLoger()
     
-    open var queue: DispatchQueue?
+    open var queue: DispatchQueue
     
     open var formatter: DDLogFormatter?
     
     open var level: DDLogLevel?
     
-    open var isAsync: Bool
-    
     init() {
-        isAsync = false
+        queue = DispatchQueue(label: "com.logmanager.ttyloger")
     }
     
     open func logMessage(_ msg: DDLogMessage) {
-        if queue == nil {
-            queue = DDLogManager.sharedInstance.logQueue
-        }
-        
         if formatter == nil {
             formatter = DDLogDefaultFormatter()
         }
@@ -82,45 +74,35 @@ open class DDTTYLoger: DDLoger {
             return
         }
         
-        let clouser = { [unowned self] in
-            print(self.formatter!.formatMessage(msg))
-        }
-        
-        if isAsync {
-            queue!.async(execute: clouser)
-        } else {
-            clouser()
-        }
+//        let clouser = { [unowned self] in
+//            print(self.formatter!.formatMessage(msg))
+//        }
+//        
+//        // XXX: isAsync?
+//        queue!.sync { clouser() }
+        print(self.formatter!.formatMessage(msg))
     }
 }
 
 
 open class DDFileLoger: DDLoger {
     
-    open var queue: DispatchQueue?
+    open var queue: DispatchQueue
     
     open var formatter: DDLogFormatter?
     
     open var level: DDLogLevel?
-    
-    open var isAsync: Bool
     
     var logFileManager: DDLogFileManager
     
     open static var sharedInstance = DDFileLoger()
     
     public init() {
-        queue = DispatchQueue(label: "com.swiftlog.fileloger", attributes: [])
+        queue = DispatchQueue(label: "com.logmanager.fileloger", attributes: [])
         logFileManager = DDLogFileManager()
-        isAsync = true
     }
     
-    
     open func logMessage(_ msg: DDLogMessage) {
-        if queue == nil {
-            queue = DDLogManager.sharedInstance.logQueue
-        }
-        
         if formatter == nil {
             formatter = DDLogDefaultFormatter()
         }
@@ -133,16 +115,13 @@ open class DDFileLoger: DDLoger {
             return
         }
         
-        let clousre = { [unowned self] in
-                        self.logFileManager.writeFile(self.formatter!.formatMessage(msg))
-                    }
+        self.logFileManager.writeFile(self.formatter!.formatMessage(msg))
         
-        
-        if isAsync {
-            queue!.async(execute: clousre)
-        } else {
-            queue!.sync(execute: clousre)
-        }
+//        let clousre = { [unowned self] in
+//            self.logFileManager.writeFile(self.formatter!.formatMessage(msg))
+//        }
+//        
+//        queue.async(execute: clousre)
     }
 }
 
