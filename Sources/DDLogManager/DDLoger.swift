@@ -41,8 +41,9 @@ public protocol DDLoger {
     
     var formatter: DDLogFormatter? {get set}
     
-    var level: DDLogLevel? {get set}
+    var level: DDLogLevel {get set}
     
+    // execute the log message function in specific `queue`
     func logMessage(_ msg: DDLogMessage)
 }
 
@@ -55,10 +56,11 @@ open class DDTTYLoger: DDLoger {
     
     open var formatter: DDLogFormatter?
     
-    open var level: DDLogLevel?
+    open var level: DDLogLevel
     
     init() {
         queue = DispatchQueue(label: "com.logmanager.ttyloger")
+        level = DDLogManager.sharedInstance.defaultLevel
     }
     
     open func logMessage(_ msg: DDLogMessage) {
@@ -66,21 +68,7 @@ open class DDTTYLoger: DDLoger {
             formatter = DDLogDefaultFormatter()
         }
         
-        if level == nil {
-            level =  DDLogManager.sharedInstance.defaultLevel
-        }
-        
-        guard level!.rawValue >= msg.level.rawValue else {
-            return
-        }
-        
-//        let clouser = { [unowned self] in
-//            print(self.formatter!.formatMessage(msg))
-//        }
-//        
-//        // XXX: isAsync?
-//        queue!.sync { clouser() }
-        print(self.formatter!.formatMessage(msg))
+        print(formatter!.formatMessage(msg))
     }
 }
 
@@ -91,7 +79,7 @@ open class DDFileLoger: DDLoger {
     
     open var formatter: DDLogFormatter?
     
-    open var level: DDLogLevel?
+    open var level: DDLogLevel
     
     var logFileManager: DDLogFileManager
     
@@ -100,6 +88,8 @@ open class DDFileLoger: DDLoger {
     public init() {
         queue = DispatchQueue(label: "com.logmanager.fileloger", attributes: [])
         logFileManager = DDLogFileManager()
+        
+        level =  DDLogManager.sharedInstance.defaultLevel
     }
     
     open func logMessage(_ msg: DDLogMessage) {
@@ -107,21 +97,7 @@ open class DDFileLoger: DDLoger {
             formatter = DDLogDefaultFormatter()
         }
         
-        if level == nil {
-            level =  DDLogManager.sharedInstance.defaultLevel
-        }
-        
-        guard level!.rawValue >= msg.level.rawValue else {
-            return
-        }
-        
-        self.logFileManager.writeFile(self.formatter!.formatMessage(msg))
-        
-//        let clousre = { [unowned self] in
-//            self.logFileManager.writeFile(self.formatter!.formatMessage(msg))
-//        }
-//        
-//        queue.async(execute: clousre)
+        logFileManager.writeFile(formatter!.formatMessage(msg))
     }
 }
 

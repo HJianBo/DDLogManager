@@ -39,6 +39,25 @@ public enum DDLogLevel: UInt8 {
     }
 }
 
+extension DDLogLevel: Comparable {
+}
+
+public func > (lhs: DDLogLevel, rhs: DDLogLevel) -> Bool {
+    return lhs.rawValue > rhs.rawValue
+}
+
+public func >= (lhs: DDLogLevel, rhs: DDLogLevel) -> Bool {
+    return lhs.rawValue >= rhs.rawValue
+}
+
+public func < (lhs: DDLogLevel, rhs: DDLogLevel) -> Bool {
+    return lhs.rawValue < rhs.rawValue
+}
+
+public func <= (lhs: DDLogLevel, rhs: DDLogLevel) -> Bool {
+    return lhs.rawValue <= rhs.rawValue
+}
+
 
 public func DDLogVerbose(_ format: String, function: StaticString = #function, file: StaticString = #file, line: Int = #line) {
     let manager = DDLogManager.sharedInstance
@@ -157,6 +176,9 @@ open class DDLogManager {
         
         for loger in logers {
             //logGroup.enter()
+            guard loger.level >= message.level else {
+                continue
+            }
             loger.queue.async {
                 loger.logMessage(message)
             }
