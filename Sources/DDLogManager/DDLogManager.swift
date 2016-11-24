@@ -29,7 +29,6 @@ public enum DDLogLevel: UInt8 {
     /// 显示 错误|警告|调试|信息|冗余 日志
     case verbose
     
-    
     var stringValue: String {
         return map[self]!
     }
@@ -59,7 +58,10 @@ public func <= (lhs: DDLogLevel, rhs: DDLogLevel) -> Bool {
 }
 
 
-public func DDLogVerbose(_ format: String, function: StaticString = #function, file: StaticString = #file, line: Int = #line) {
+public func DDLogVerbose(_ format: CustomStringConvertible,
+                         function: StaticString = #function,
+                         file: StaticString = #file,
+                         line: Int = #line) {
     let manager = DDLogManager.sharedInstance
     
     manager.logMessage(format, level: .verbose,
@@ -68,7 +70,10 @@ public func DDLogVerbose(_ format: String, function: StaticString = #function, f
                                 line: line)
 }
 
-public func DDLogInfo(_ format: String, function: StaticString = #function, file: StaticString = #file, line: Int = #line) {
+public func DDLogInfo(_ format: CustomStringConvertible,
+                      function: StaticString = #function,
+                      file: StaticString = #file,
+                      line: Int = #line) {
     let manager = DDLogManager.sharedInstance
     
     manager.logMessage(format, level: .info,
@@ -77,7 +82,10 @@ public func DDLogInfo(_ format: String, function: StaticString = #function, file
                                 line: line)
 }
 
-public func DDLogDebug(_ format: String, function: StaticString = #function, file: StaticString = #file, line: Int = #line) {
+public func DDLogDebug(_ format: CustomStringConvertible,
+                       function: StaticString = #function,
+                       file: StaticString = #file,
+                       line: Int = #line) {
     let manager = DDLogManager.sharedInstance
     
     manager.logMessage(format, level: .debug,
@@ -86,7 +94,10 @@ public func DDLogDebug(_ format: String, function: StaticString = #function, fil
                                 line: line)
 }
 
-public func DDLogWarn(_ format: String, function: StaticString = #function, file: StaticString = #file, line: Int = #line) {
+public func DDLogWarn(_ format: CustomStringConvertible,
+                      function: StaticString = #function,
+                      file: StaticString = #file,
+                      line: Int = #line) {
     let manager = DDLogManager.sharedInstance
     
     manager.logMessage(format, level: .warning,
@@ -95,7 +106,10 @@ public func DDLogWarn(_ format: String, function: StaticString = #function, file
                                 line: line)
 }
 
-public func DDLogError(_ format: String, function: StaticString = #function, file: StaticString = #file, line: Int = #line) {
+public func DDLogError(_ format: CustomStringConvertible,
+                       function: StaticString = #function,
+                       file: StaticString = #file,
+                       line: Int = #line) {
     let manager = DDLogManager.sharedInstance
     
     manager.logMessage(format, level: .error,
@@ -143,9 +157,9 @@ open class DDLogManager {
         logGroup = DispatchGroup()
     }
     
-    func logMessage(_ format: String, level: DDLogLevel, function: String, file: String, line: Int) {
+    func logMessage(_ format: CustomStringConvertible, level: DDLogLevel, function: String, file: String, line: Int) {
         let timestamp = Date(timeIntervalSinceNow: 0).timeIntervalSince1970
-        let message = DDLogMessage(message: format,
+        let message = DDLogMessage(message: "\(format)",
                                    level: level,
                                    function: function,
                                    file: file,

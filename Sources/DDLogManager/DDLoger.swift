@@ -112,6 +112,7 @@ class DDLogFileManager {
     var defaultLogDirectory: String {
         let paths = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)
         let path  = paths.first! + "/Logs"
+
         
         // create file path
         if !fileManager.fileExists(atPath: path) {

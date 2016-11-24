@@ -15,6 +15,8 @@ DDLogInfo("This is info log message.")
 DDLogWarn("This is warning log message.")
 DDLogError("This is error log message.")
 
+DDLogWarn(["key": 123])
+
 // loop for test async
 for i in 0..<100 {
     DDLogWarn("[\(i)]")
