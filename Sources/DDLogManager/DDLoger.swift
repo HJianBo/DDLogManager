@@ -9,31 +9,6 @@
 import Foundation
 import Dispatch
 
-// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
-// Consider refactoring the code to use the non-optional operators.
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
-}
-
-// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
-// Consider refactoring the code to use the non-optional operators.
-fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l >= r
-  default:
-    return !(lhs < rhs)
-  }
-}
-
-
 
 public protocol DDLoger {
     
@@ -186,7 +161,7 @@ class DDLogFileManager {
         
         do {
             let fileAttr = try fileManager.attributesOfItem(atPath: lastLogFilePath)
-            let fileSize = fileAttr[FileAttributeKey.size] as? UInt
+            let fileSize = fileAttr[FileAttributeKey.size] as! UInt
             if fileSize >= maximumFileSize {
                  createNewLogFile()
             }
