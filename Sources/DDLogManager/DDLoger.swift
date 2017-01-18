@@ -23,22 +23,22 @@ public protocol DDLoger {
 }
 
 
-open class DDTTYLoger: DDLoger {
+public final class DDTTYLoger: DDLoger {
     
-    open static var sharedInstance = DDTTYLoger()
+    public static var sharedInstance = DDTTYLoger()
     
-    open var queue: DispatchQueue
+    public var queue: DispatchQueue
     
-    open var formatter: DDLogFormatter?
+    public var formatter: DDLogFormatter?
     
-    open var level: DDLogLevel
+    public var level: DDLogLevel
     
-    init() {
+    public init() {
         queue = DispatchQueue(label: "com.logmanager.ttyloger")
         level = DDLogManager.sharedInstance.defaultLevel
     }
     
-    open func logMessage(_ msg: DDLogMessage) {
+    public func logMessage(_ msg: DDLogMessage) {
         if formatter == nil {
             formatter = DDLogDefaultFormatter()
         }
@@ -48,17 +48,23 @@ open class DDTTYLoger: DDLoger {
 }
 
 
-open class DDFileLoger: DDLoger {
+public final class DDFileLoger: DDLoger {
     
-    open var queue: DispatchQueue
+    public static var sharedInstance = DDFileLoger()
     
-    open var formatter: DDLogFormatter?
+    public var queue: DispatchQueue
     
-    open var level: DDLogLevel
+    public var formatter: DDLogFormatter?
+    
+    public var level: DDLogLevel
+    
+    public var folderName: String? {
+        didSet {
+            logFileManager.folderName = folderName
+        }
+    }
     
     var logFileManager: DDLogFileManager
-    
-    open static var sharedInstance = DDFileLoger()
     
     public init() {
         queue = DispatchQueue(label: "com.logmanager.fileloger", attributes: [])
@@ -67,7 +73,7 @@ open class DDFileLoger: DDLoger {
         level =  DDLogManager.sharedInstance.defaultLevel
     }
     
-    open func logMessage(_ msg: DDLogMessage) {
+    public func logMessage(_ msg: DDLogMessage) {
         if formatter == nil {
             formatter = DDLogDefaultFormatter()
         }
@@ -77,17 +83,35 @@ open class DDFileLoger: DDLoger {
 }
 
 
-// filename:  appname 2015-01-02.log
-class DDLogFileManager {
+/// log file manager
+final class DDLogFileManager {
     
-    let maximumFileSize: UInt = 1024 * 1024 // 1MB
+    var folderName: String?
+    
+    let maximumFileSize: Int = 1024 * 1024 // 1MB
     
     let fileManager = FileManager.default
     
+    /**
+     return default log directory
+      - MaxOS: ~/Library/${ApplicationName}/Logs/${folderName}
+      - iOS:   {AppSandBox}/Library/Logs/${folderName}
+      - Linux: ???/${ApplicationName}/Logs/${folderName}
+     */
     var defaultLogDirectory: String {
-        let paths = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)
-        let path  = paths.first! + "/Logs"
+        let paths = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)
+        
+        // os(Linux), os(macOS), os(appleTV), os(watchOS)
+        #if os(iOS)
+            var path  = paths.first! + "/Logs"
+        #else
+            var path  = paths.first! + "/\(applicationName)/Logs"
+        #endif
+        
 
+        if let subname = folderName {
+            path += "/" + subname
+        }
         
         // create file path
         if !fileManager.fileExists(atPath: path) {
@@ -102,6 +126,7 @@ class DDLogFileManager {
     }
     
     var lastLogFilePath: String {
+        // XXX: 如果使用排序来获取当前最新创建的日志文件, 可能会存在问题
         if let lastFile = sortedLogFilePaths().first {
             return lastFile
         } else {
@@ -153,6 +178,7 @@ class DDLogFileManager {
         return logFilePaths
     }
     
+    // TODO: add write cache
     func writeFile(_ str: String) {
         var message = str
         if !message.hasSuffix("\n") {
@@ -161,7 +187,7 @@ class DDLogFileManager {
         
         do {
             let fileAttr = try fileManager.attributesOfItem(atPath: lastLogFilePath)
-            let fileSize = fileAttr[FileAttributeKey.size] as! UInt
+            let fileSize = fileAttr[FileAttributeKey.size] as! Int
             if fileSize >= maximumFileSize {
                  createNewLogFile()
             }
@@ -179,31 +205,28 @@ class DDLogFileManager {
     }
     
     @discardableResult func createNewLogFile() -> String {
-        let path = "\(defaultLogDirectory)/\(applicationName)_\(currentDate).log"
+        let path = "\(defaultLogDirectory)/\(currentDate).log"
         fileManager.createFile(atPath: path, contents: nil, attributes: nil)
         
         return path
     }
     
-    func isLogFile(_ name: String) -> Bool {
-        // TODO:
-        let fileName = name
-        let hasPrefix = fileName.hasPrefix(applicationName)
-        let hasSuffix = fileName.hasSuffix(".log")
+    func isLogFile(_ filename: String) -> Bool {
+        //let hasPrefix = fileName.hasPrefix(applicationName)
+        let hasSuffix = filename.hasSuffix(".log")
         
-        return (hasPrefix && hasSuffix)
+        return hasSuffix
     }
     
     var applicationName: String {
-        // TODO: application name
+        // XXX: application name
         //let d = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleIdentifier")
         return "SwiftLog"
     }
     
     var currentDate: String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH-mm"
+        formatter.dateFormat = "yyyy-MM-dd HHmmss.SSS"
         return formatter.string(from: Date(timeIntervalSinceNow: 0))
     }
 }
-
