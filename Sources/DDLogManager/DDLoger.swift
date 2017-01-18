@@ -101,8 +101,8 @@ final class DDLogFileManager {
     var defaultLogDirectory: String {
         let paths = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)
         
-        // os(Linux), os(macOS), os(appleTV), os(watchOS)
-        #if os(iOS)
+        // os(Linux), os(macOS), os(tvOS), os(watchOS)
+        #if os(iOS) || os(tvOS) || os(watchOS)
             var path  = paths.first! + "/Logs"
         #else
             var path  = paths.first! + "/\(applicationName)/Logs"

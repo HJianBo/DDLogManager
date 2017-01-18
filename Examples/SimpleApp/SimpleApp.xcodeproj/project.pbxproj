@@ -13,6 +13,12 @@
 		82707E291E2F70AD0029A643 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82707E271E2F70AD0029A643 /* Main.storyboard */; };
 		82707E2E1E2F70C90029A643 /* DDLogManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82C1B9C71E2F6306008DF6DE /* DDLogManager.framework */; };
 		82707E2F1E2F70C90029A643 /* DDLogManager.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 82C1B9C71E2F6306008DF6DE /* DDLogManager.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		82707E451E2F75210029A643 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82707E441E2F75210029A643 /* AppDelegate.swift */; };
+		82707E471E2F75210029A643 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82707E461E2F75210029A643 /* ViewController.swift */; };
+		82707E4A1E2F75210029A643 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82707E481E2F75210029A643 /* Main.storyboard */; };
+		82707E4C1E2F75210029A643 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82707E4B1E2F75210029A643 /* Assets.xcassets */; };
+		82707E541E2F756D0029A643 /* DDLogManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82707E501E2F75210029A643 /* DDLogManager.framework */; };
+		82707E551E2F756D0029A643 /* DDLogManager.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 82707E501E2F75210029A643 /* DDLogManager.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		82C1B9A31E2F62BC008DF6DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C1B9A21E2F62BC008DF6DE /* AppDelegate.swift */; };
 		82C1B9A51E2F62BC008DF6DE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C1B9A41E2F62BC008DF6DE /* ViewController.swift */; };
 		82C1B9A81E2F62BC008DF6DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82C1B9A61E2F62BC008DF6DE /* Main.storyboard */; };
@@ -29,6 +35,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = OBJ_21;
 			remoteInfo = "DDLogManager-macOS";
+		};
+		82707E4F1E2F75210029A643 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 82C1B9C01E2F6306008DF6DE /* DDLogManager.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 82707E3C1E2F73F90029A643;
+			remoteInfo = "DDLogManager-tvOS";
+		};
+		82707E561E2F756D0029A643 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 82C1B9C01E2F6306008DF6DE /* DDLogManager.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 82707E331E2F73F90029A643;
+			remoteInfo = "DDLogManager-tvOS";
 		};
 		82C1B9C61E2F6306008DF6DE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -86,6 +106,17 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		82707E581E2F756D0029A643 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				82707E551E2F756D0029A643 /* DDLogManager.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		82C1B9E51E2F641E008DF6DE /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -106,6 +137,12 @@
 		82707E251E2F70AD0029A643 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		82707E281E2F70AD0029A643 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		82707E2A1E2F70AD0029A643 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		82707E421E2F75210029A643 /* TVApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		82707E441E2F75210029A643 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		82707E461E2F75210029A643 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		82707E491E2F75210029A643 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		82707E4B1E2F75210029A643 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		82707E4D1E2F75210029A643 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82C1B99F1E2F62BC008DF6DE /* SimpleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82C1B9A21E2F62BC008DF6DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		82C1B9A41E2F62BC008DF6DE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -122,6 +159,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				82707E2E1E2F70C90029A643 /* DDLogManager.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82707E3F1E2F75210029A643 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82707E541E2F756D0029A643 /* DDLogManager.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,9 +193,22 @@
 			path = MacApp;
 			sourceTree = "<group>";
 		};
+		82707E431E2F75210029A643 /* TVApp */ = {
+			isa = PBXGroup;
+			children = (
+				82707E441E2F75210029A643 /* AppDelegate.swift */,
+				82707E461E2F75210029A643 /* ViewController.swift */,
+				82707E481E2F75210029A643 /* Main.storyboard */,
+				82707E4B1E2F75210029A643 /* Assets.xcassets */,
+				82707E4D1E2F75210029A643 /* Info.plist */,
+			);
+			path = TVApp;
+			sourceTree = "<group>";
+		};
 		82C1B9961E2F62BC008DF6DE = {
 			isa = PBXGroup;
 			children = (
+				82707E431E2F75210029A643 /* TVApp */,
 				82C1B9BF1E2F62F6008DF6DE /* Frameworks */,
 				82C1B9A11E2F62BC008DF6DE /* SimpleApp */,
 				82707E201E2F70AD0029A643 /* MacApp */,
@@ -163,6 +221,7 @@
 			children = (
 				82C1B99F1E2F62BC008DF6DE /* SimpleApp.app */,
 				82707E1F1E2F70AD0029A643 /* MacApp.app */,
+				82707E421E2F75210029A643 /* TVApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -193,6 +252,7 @@
 			children = (
 				82C1B9C71E2F6306008DF6DE /* DDLogManager.framework */,
 				82C1B9E01E2F641E008DF6DE /* DDLogManager.framework */,
+				82707E501E2F75210029A643 /* DDLogManager.framework */,
 				82C1B9C91E2F6306008DF6DE /* DDLogManagerExec */,
 				82C1B9CB1E2F6306008DF6DE /* DDLogManagerTests.xctest */,
 			);
@@ -219,6 +279,25 @@
 			name = MacApp;
 			productName = MacApp;
 			productReference = 82707E1F1E2F70AD0029A643 /* MacApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		82707E411E2F75210029A643 /* TVApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 82707E511E2F75210029A643 /* Build configuration list for PBXNativeTarget "TVApp" */;
+			buildPhases = (
+				82707E3E1E2F75210029A643 /* Sources */,
+				82707E3F1E2F75210029A643 /* Frameworks */,
+				82707E401E2F75210029A643 /* Resources */,
+				82707E581E2F756D0029A643 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				82707E571E2F756D0029A643 /* PBXTargetDependency */,
+			);
+			name = TVApp;
+			productName = TVApp;
+			productReference = 82707E421E2F75210029A643 /* TVApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 		82C1B99E1E2F62BC008DF6DE /* SimpleApp */ = {
@@ -255,6 +334,10 @@
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
 					};
+					82707E411E2F75210029A643 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
 					82C1B99E1E2F62BC008DF6DE = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = AN4YYK28KP;
@@ -283,11 +366,19 @@
 			targets = (
 				82C1B99E1E2F62BC008DF6DE /* SimpleApp */,
 				82707E1E1E2F70AD0029A643 /* MacApp */,
+				82707E411E2F75210029A643 /* TVApp */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		82707E501E2F75210029A643 /* DDLogManager.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = DDLogManager.framework;
+			remoteRef = 82707E4F1E2F75210029A643 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		82C1B9C71E2F6306008DF6DE /* DDLogManager.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -328,6 +419,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		82707E401E2F75210029A643 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82707E4C1E2F75210029A643 /* Assets.xcassets in Resources */,
+				82707E4A1E2F75210029A643 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		82C1B99D1E2F62BC008DF6DE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -350,6 +450,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		82707E3E1E2F75210029A643 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82707E471E2F75210029A643 /* ViewController.swift in Sources */,
+				82707E451E2F75210029A643 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		82C1B99B1E2F62BC008DF6DE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -366,6 +475,11 @@
 			isa = PBXTargetDependency;
 			name = "DDLogManager-macOS";
 			targetProxy = 82707E301E2F70C90029A643 /* PBXContainerItemProxy */;
+		};
+		82707E571E2F756D0029A643 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "DDLogManager-tvOS";
+			targetProxy = 82707E561E2F756D0029A643 /* PBXContainerItemProxy */;
 		};
 		82C1B9D11E2F632D008DF6DE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -384,6 +498,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				82707E281E2F70AD0029A643 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		82707E481E2F75210029A643 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				82707E491E2F75210029A643 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -438,6 +560,40 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		82707E521E2F75210029A643 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = TVApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.beidouapp.TVApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.1;
+			};
+			name = Debug;
+		};
+		82707E531E2F75210029A643 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = TVApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.beidouapp.TVApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Release;
 		};
@@ -574,6 +730,14 @@
 			buildConfigurations = (
 				82707E2C1E2F70AD0029A643 /* Debug */,
 				82707E2D1E2F70AD0029A643 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		82707E511E2F75210029A643 /* Build configuration list for PBXNativeTarget "TVApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				82707E521E2F75210029A643 /* Debug */,
+				82707E531E2F75210029A643 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
