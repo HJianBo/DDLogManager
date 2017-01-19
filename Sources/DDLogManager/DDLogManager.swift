@@ -144,7 +144,17 @@ public final class DDLogManager {
     public var defaultLevel: DDLogLevel = .debug
     
     public class func addLoger(_ loger: DDLoger) {
-        DDLogManager.sharedInstance.logers.append(loger)
+        let instance = DDLogManager.sharedInstance
+        
+        // cannot contain a same logers in logers array
+        let containHandler = { (_loger: DDLoger) -> Bool in
+            let lmir = Mirror(reflecting: _loger)
+            let rmir = Mirror(reflecting: loger)
+            return lmir.subjectType == rmir.subjectType
+        }
+        if !instance.logers.contains(where: containHandler) {
+            instance.logers.append(loger)
+        }
     }
     
     init() {
