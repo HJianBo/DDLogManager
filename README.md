@@ -1,16 +1,14 @@
 # DDLogManager
-DDLogManager 是一个简单的、纯Swift实现的**日志管理框架**。提供方便的日志输出控制和管理功能。
+DDLogManager 是一个高效、简单的**日志管理框架**。该项目使用纯 Swift 实现，提供方便的日志输出控制和管理功能。
 
 # 特性
-- 支持 masOS、Ubuntu
+- 支持 iOS/masOS/tvOS/watchOS、Ubuntu
 - 分等级的日志打印控制框架
 - 支持 **控制台** **文件** 的 Log 输出
 - 可 **自定义打印样式** 遵循 `DDLogerFormatter` 协议
 
 # 要求
 
-- Mac OS 10.10 +
-- Ubuntu 14.04 / 16.04
 - Swift 3.0 +
 
 # 使用
@@ -24,7 +22,7 @@ import DDLogManager
 ``` Swift
 // Init
 DDLogManager.addLoger(DDTTYLoger.sharedInstance) // TTY  = Xcode console
-DDLogManager.addLoger(DDFileLoger()) // File = Written log to file
+DDLogManager.addLoger(DDFileLoger.sharedInstance) // File = Written log to file
 
 // ...
 

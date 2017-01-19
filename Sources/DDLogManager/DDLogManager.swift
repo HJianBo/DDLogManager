@@ -125,7 +125,7 @@ private let LOG_QUEUE_SPECIFI_KEY = DispatchSpecificKey<String>()
 
 private let LOG_QUEUE_SPECIFI_VALUE = "LOG_QUEUE_SPECIFI_VALUE"
 
-open class DDLogManager {
+public final class DDLogManager {
     
     static var sharedInstance = DDLogManager()
     
@@ -141,9 +141,9 @@ open class DDLogManager {
     /// ???
     var logGroup: DispatchGroup
     
-    open var defaultLevel: DDLogLevel = .debug
+    public var defaultLevel: DDLogLevel = .debug
     
-    open class func addLoger(_ loger: DDLoger) {
+    public class func addLoger(_ loger: DDLoger) {
         DDLogManager.sharedInstance.logers.append(loger)
     }
     
