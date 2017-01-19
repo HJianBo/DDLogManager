@@ -10,6 +10,9 @@
 		82707E351E2F73F90029A643 /* DDLoger.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* DDLoger.swift */; };
 		82707E361E2F73F90029A643 /* DDLogFormater.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* DDLogFormater.swift */; };
 		82707E371E2F73F90029A643 /* DDLogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* DDLogManager.swift */; };
+		82AAA62E1E304EB9000EE4D1 /* DDLoger.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* DDLoger.swift */; };
+		82AAA62F1E304EB9000EE4D1 /* DDLogFormater.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* DDLogFormater.swift */; };
+		82AAA6301E304EB9000EE4D1 /* DDLogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* DDLogManager.swift */; };
 		82C1B9D51E2F63BC008DF6DE /* DDLoger.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* DDLoger.swift */; };
 		82C1B9D61E2F63BC008DF6DE /* DDLogFormater.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* DDLogFormater.swift */; };
 		82C1B9D71E2F63BC008DF6DE /* DDLogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* DDLogManager.swift */; };
@@ -41,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		82707E3C1E2F73F90029A643 /* DDLogManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DDLogManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		82AAA6351E304EB9000EE4D1 /* DDLogManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DDLogManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		82C1B9DC1E2F63BC008DF6DE /* DDLogManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DDLogManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_10 /* DDLogFormater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDLogFormater.swift; sourceTree = "<group>"; };
 		OBJ_11 /* DDLogManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDLogManager.swift; sourceTree = "<group>"; };
@@ -55,6 +59,13 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		82707E381E2F73F90029A643 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82AAA6311E304EB9000EE4D1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
@@ -128,6 +139,7 @@
 				OBJ_20 /* DDLogManagerTests.xctest */,
 				82C1B9DC1E2F63BC008DF6DE /* DDLogManager.framework */,
 				82707E3C1E2F73F90029A643 /* DDLogManager.framework */,
+				82AAA6351E304EB9000EE4D1 /* DDLogManager.framework */,
 			);
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -179,6 +191,22 @@
 			name = "DDLogManager-tvOS";
 			productName = DDLogManager;
 			productReference = 82707E3C1E2F73F90029A643 /* DDLogManager.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		82AAA62C1E304EB9000EE4D1 /* DDLogManager-watchOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 82AAA6321E304EB9000EE4D1 /* Build configuration list for PBXNativeTarget "DDLogManager-watchOS" */;
+			buildPhases = (
+				82AAA62D1E304EB9000EE4D1 /* Sources */,
+				82AAA6311E304EB9000EE4D1 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "DDLogManager-watchOS";
+			productName = DDLogManager;
+			productReference = 82AAA6351E304EB9000EE4D1 /* DDLogManager.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		82C1B9D31E2F63BC008DF6DE /* DDLogManager-iOS */ = {
@@ -270,6 +298,7 @@
 				OBJ_21 /* DDLogManager-macOS */,
 				82C1B9D31E2F63BC008DF6DE /* DDLogManager-iOS */,
 				82707E331E2F73F90029A643 /* DDLogManager-tvOS */,
+				82AAA62C1E304EB9000EE4D1 /* DDLogManager-watchOS */,
 				OBJ_30 /* DDLogManagerExec */,
 				OBJ_39 /* DDLogManagerTests */,
 			);
@@ -284,6 +313,16 @@
 				82707E351E2F73F90029A643 /* DDLoger.swift in Sources */,
 				82707E361E2F73F90029A643 /* DDLogFormater.swift in Sources */,
 				82707E371E2F73F90029A643 /* DDLogManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82AAA62D1E304EB9000EE4D1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				82AAA62E1E304EB9000EE4D1 /* DDLoger.swift in Sources */,
+				82AAA62F1E304EB9000EE4D1 /* DDLogFormater.swift in Sources */,
+				82AAA6301E304EB9000EE4D1 /* DDLogManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,6 +424,56 @@
 				TARGET_NAME = DDLogManager;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VALID_ARCHS = "arm64 armv7 armv7s";
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		82AAA6331E304EB9000EE4D1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = DDLogManager.xcodeproj/DDLogManager_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = DDLogManager;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = SWIFT_PACKAGE;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGET_NAME = DDLogManager;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VALID_ARCHS = "armv7k x84_64 i386";
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		82AAA6341E304EB9000EE4D1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = DDLogManager.xcodeproj/DDLogManager_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = DDLogManager;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = SWIFT_PACKAGE;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGET_NAME = DDLogManager;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VALID_ARCHS = "armv7k x84_64 i386";
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
@@ -636,6 +725,15 @@
 			buildConfigurations = (
 				82707E3A1E2F73F90029A643 /* Debug */,
 				82707E3B1E2F73F90029A643 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		82AAA6321E304EB9000EE4D1 /* Build configuration list for PBXNativeTarget "DDLogManager-watchOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				82AAA6331E304EB9000EE4D1 /* Debug */,
+				82AAA6341E304EB9000EE4D1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

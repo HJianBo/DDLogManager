@@ -95,7 +95,7 @@ final class DDLogFileManager {
     /**
      return default log directory
       - MaxOS: ~/Library/${ApplicationName}/Logs/${folderName}
-      - iOS:   {AppSandBox}/Library/Logs/${folderName}
+      - iOS/tvOS/watchOS:   {AppSandBox}/Library/Logs/${folderName}
       - Linux: ???/${ApplicationName}/Logs/${folderName}
      */
     var defaultLogDirectory: String {
