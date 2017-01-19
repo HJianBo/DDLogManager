@@ -1036,6 +1036,7 @@
 				82AAA6821E3050FB000EE4D1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		82AAA6841E3050FB000EE4D1 /* Build configuration list for PBXNativeTarget "WatchApp" */ = {
 			isa = XCConfigurationList;
@@ -1044,6 +1045,7 @@
 				82AAA6861E3050FB000EE4D1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		82C1B99A1E2F62BC008DF6DE /* Build configuration list for PBXProject "SimpleApp" */ = {
 			isa = XCConfigurationList;
