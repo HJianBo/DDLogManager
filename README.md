@@ -4,7 +4,7 @@ DDLogManager 是一个高效、简单的**日志管理框架**。该项目使用
 # 特性
 - 支持 iOS/masOS/tvOS/watchOS、Ubuntu
 - 分等级的日志打印控制框架
-- 支持 **控制台** **文件** 的 Log 输出
+- 支持 **控制台** **文件** 两种日志输出
 - 可 **自定义打印样式** 遵循 `DDLogerFormatter` 协议
 
 # 要求
@@ -35,10 +35,8 @@ DDLogError("This is error log message.")
 ```
 
 # TODO
-1. 支持控制台颜色打印
-2. 支持 Log 日志文件管理
-3. 修复多线程打印时的时序问题
-4. 支持 `Carthage`, 以供 iOS 开发使用
+1. 支持终端不同日志等级的颜色打印
+2. 支持 `Carthage`, 以供 iOS 开发使用
 
 # 感谢
 参照大神[@CocoaLumberjack](https://github.com/CocoaLumberjack/CocoaLumberjack)完成编写.
