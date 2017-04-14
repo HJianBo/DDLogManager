@@ -15,7 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		82DC59861EA07662004462BA /* PBXContainerItemProxy */ = {
+		826279831EA079EC00EB41F1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
@@ -198,7 +198,7 @@
 		OBJ_36 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = OBJ_19 /* DDLogManager */;
-			targetProxy = 82DC59861EA07662004462BA /* PBXContainerItemProxy */;
+			targetProxy = 826279831EA079EC00EB41F1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

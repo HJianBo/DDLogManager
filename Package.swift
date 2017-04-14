@@ -4,5 +4,8 @@ let package = Package(
     name: "DDLogManager",
     targets: [
         Target(name: "DDLogManager")
+    ],
+    exclude: [
+        "Examples"
     ]
 )
