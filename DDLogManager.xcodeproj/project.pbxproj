@@ -28,7 +28,6 @@
 		OBJ_10 /* DDLogFormater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDLogFormater.swift; sourceTree = "<group>"; };
 		OBJ_11 /* DDLogManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDLogManager.swift; sourceTree = "<group>"; };
 		OBJ_14 /* DDLogManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDLogManagerTests.swift; sourceTree = "<group>"; };
-		OBJ_15 /* Examples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Examples; sourceTree = SOURCE_ROOT; };
 		OBJ_17 /* DDLogManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DDLogManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_18 /* DDLogManagerTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = DDLogManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
@@ -80,16 +79,14 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
 				OBJ_7 /* Sources */,
 				OBJ_12 /* Tests */,
-				OBJ_15 /* Examples */,
 				OBJ_16 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -162,7 +159,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_16 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
