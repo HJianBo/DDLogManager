@@ -1,4 +1,4 @@
-# DDLogManager [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+# DDLogManager [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![Build Status](https://travis-ci.org/HJianBo/DDLogManager.svg?branch=master)](https://travis-ci.org/HJianBo/DDLogManager)
 DDLogManager 是一个高效、简单的**日志管理框架**。该项目仅使用 Swift 实现，提供方便的日志输出控制和管理功能。
 
 ## 特性
