@@ -34,7 +34,7 @@ public enum DDLogLevel: UInt8 {
     }
     
     fileprivate var map: Dictionary<DDLogLevel, String> {
-        return [.off: "Off", .error: "Error", .warning: "Warn ", .debug: "Debug", .info: "Info ", .verbose: "Verbs"]
+        return [.off: "Off", .error: "Error", .warning: "Warn", .debug: "Debug", .info: "Info", .verbose: "Verbs"]
     }
 }
 
