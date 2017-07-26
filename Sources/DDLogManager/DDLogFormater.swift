@@ -22,6 +22,6 @@ class DDLogDefaultFormatter: DDLogFormatter {
         
         datefmter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
         
-        return "\(datefmter.string(from: date)) [\(fileName): \(msg.line)][\(msg.level.stringValue)]: \(msg.message)"
+        return "\(datefmter.string(from: date)) [\(fileName):\(String(format:"%3d",msg.line))][\(msg.level.stringValue)]: \(msg.message)"
     }
 }
