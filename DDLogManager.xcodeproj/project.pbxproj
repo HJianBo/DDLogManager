@@ -29,7 +29,7 @@
 		OBJ_11 /* DDLogManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDLogManager.swift; sourceTree = "<group>"; };
 		OBJ_14 /* DDLogManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDLogManagerTests.swift; sourceTree = "<group>"; };
 		OBJ_17 /* DDLogManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DDLogManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		OBJ_18 /* DDLogManagerTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = DDLogManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_18 /* DDLogManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = DDLogManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		OBJ_9 /* DDLoger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDLoger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -151,6 +151,14 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 9999;
+				TargetAttributes = {
+					OBJ_19 = {
+						LastSwiftMigration = 0900;
+					};
+					OBJ_28 = {
+						LastSwiftMigration = 0900;
+					};
+				};
 			};
 			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "DDLogManager" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -217,6 +225,8 @@
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				TARGET_NAME = DDLogManager;
 			};
 			name = Debug;
@@ -238,6 +248,8 @@
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				TARGET_NAME = DDLogManager;
 			};
 			name = Release;
@@ -281,6 +293,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				TARGET_NAME = DDLogManagerTests;
 			};
 			name = Debug;
@@ -298,6 +312,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				TARGET_NAME = DDLogManagerTests;
 			};
 			name = Release;
